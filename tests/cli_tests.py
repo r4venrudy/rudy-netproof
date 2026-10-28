@@ -1,6 +1,7 @@
 """Standard-library process/format contracts, independent cardinalities and witness replay."""
 import ipaddress
 import json
+import re
 from pathlib import Path
 import subprocess
 import sys
@@ -19,6 +20,9 @@ def run(*args, code=0):
     result = subprocess.run([str(binary), *map(str, args)], text=True, encoding="utf-8", capture_output=True, timeout=20)
     check(result.returncode == code, (args, result.returncode, result.stderr))
     return result
+
+local_links = [target.split("#")[0] for target in re.findall(r"\]\(([^)]+)\)", (root / "README.md").read_text(encoding="utf-8")) if "://" not in target and not target.startswith("#")]
+check(all((root / target).is_file() for target in local_links) and (root / "assets/banner.svg").is_file(), "source and installed documentation links/assets resolve")
 
 base = root / "examples/baseline.json"
 candidate = root / "examples/candidate.json"
