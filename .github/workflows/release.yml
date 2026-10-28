@@ -63,11 +63,11 @@ jobs:
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8
         with:
           pattern: package-*
-          path: assets
+          path: release-assets
           merge-multiple: true
       - name: Hash and publish tested preview
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          (cd assets && sha256sum netproof-* > SHA256SUMS.txt)
-          gh release create "$GITHUB_REF_NAME" assets/* --title "Rudy NetProof $GITHUB_REF_NAME" --notes-file docs/RELEASE.md --prerelease
+          (cd release-assets && sha256sum netproof-* > SHA256SUMS.txt)
+          gh release create "$GITHUB_REF_NAME" release-assets/netproof-* release-assets/SHA256SUMS.txt --title "Rudy NetProof $GITHUB_REF_NAME" --notes-file docs/RELEASE.md --prerelease

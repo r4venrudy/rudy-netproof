@@ -1,5 +1,7 @@
 Rudy NetProof is a C++20 offline first-match network-policy reasoning engine.
 
+The patch preview publishes packages through a dedicated directory so the release attaches exactly the three tested native archives and their checksum manifest.
+
 - IPv4/IPv6 symbolic decision regions for source/destination addresses and TCP/UDP ports.
 - Exact first-match reachability, union shadowing, blocking-owner evidence, and concrete tuple explanations.
 - Semantic policy comparison with newly allowed/denied regions, arbitrary-precision counts, replayable witnesses, and CI gates.

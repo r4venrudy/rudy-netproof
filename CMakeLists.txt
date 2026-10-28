@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(rudy_netproof VERSION 0.1.0 LANGUAGES CXX)
+project(rudy_netproof VERSION 0.1.1 LANGUAGES CXX)
 option(NETPROOF_SANITIZE "Enable AddressSanitizer and UndefinedBehaviorSanitizer" OFF)
 option(NETPROOF_REQUIRE_CLI_TESTS "Require Python for the independent CLI contract suite" OFF)
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")

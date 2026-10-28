@@ -11,7 +11,7 @@
 
 namespace netproof {
 using Json = nlohmann::json;
-inline constexpr const char* version = "0.1.0-preview";
+inline constexpr const char* version = "0.1.1-preview";
 struct Error : std::runtime_error { using std::runtime_error::runtime_error; };
 struct Key {
   std::array<std::uint32_t, 4> word{};
