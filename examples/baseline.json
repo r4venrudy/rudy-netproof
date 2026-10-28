@@ -1,0 +1,98 @@
+{
+  "schema": "rudy-netproof/policy-v1",
+  "name": "Synthetic production baseline",
+  "family": "dual",
+  "default": "deny",
+  "rules": [
+    {
+      "id": "dns-to-resolver",
+      "action": "allow",
+      "protocol": "udp",
+      "source": "192.0.2.0/24",
+      "destination": "198.51.100.53/32",
+      "sourcePorts": [
+        1024,
+        65535
+      ],
+      "destinationPorts": [
+        53,
+        53
+      ]
+    },
+    {
+      "id": "tls-prod-v4",
+      "action": "allow",
+      "protocol": "tcp",
+      "source": "192.0.2.0/24",
+      "destination": "198.51.100.0/24",
+      "sourcePorts": [
+        1024,
+        65535
+      ],
+      "destinationPorts": [
+        443,
+        443
+      ]
+    },
+    {
+      "id": "stale-tls-v4",
+      "action": "deny",
+      "protocol": "tcp",
+      "source": "192.0.2.0/25",
+      "destination": "198.51.100.0/24",
+      "sourcePorts": [
+        1024,
+        65535
+      ],
+      "destinationPorts": [
+        443,
+        443
+      ]
+    },
+    {
+      "id": "ssh-maint",
+      "action": "allow",
+      "protocol": "tcp",
+      "source": "192.0.2.128/25",
+      "destination": "198.51.100.10/32",
+      "sourcePorts": [
+        49152,
+        65535
+      ],
+      "destinationPorts": [
+        22,
+        22
+      ]
+    },
+    {
+      "id": "tls-prod-v6",
+      "action": "allow",
+      "protocol": "tcp",
+      "source": "2001:db8:1::/64",
+      "destination": "2001:db8:2::/64",
+      "sourcePorts": [
+        1024,
+        65535
+      ],
+      "destinationPorts": [
+        443,
+        443
+      ]
+    },
+    {
+      "id": "deny-legacy-v4",
+      "action": "deny",
+      "protocol": "tcp",
+      "source": "192.0.2.0/24",
+      "destination": "198.51.100.0/24",
+      "sourcePorts": [
+        0,
+        65535
+      ],
+      "destinationPorts": [
+        0,
+        1023
+      ]
+    }
+  ]
+}
